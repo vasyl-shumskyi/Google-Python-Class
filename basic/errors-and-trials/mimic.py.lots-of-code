@@ -1,0 +1,213 @@
+#!/usr/bin/python -tt
+# Copyright 2010 Google Inc.
+# Licensed under the Apache License, Version 2.0
+# http://www.apache.org/licenses/LICENSE-2.0
+
+# Google's Python Class
+# http://code.google.com/edu/languages/google-python-class/
+
+"""Mimic pyquick exercise -- optional extra exercise.
+Google's Python Class
+
+Read in the file specified on the command line.
+Do a simple split() on whitespace to obtain all the words in the file.
+Rather than read the file line by line, it's easier to read
+it into one giant string and split it once.
+
+Build a "mimic" dict that maps each word that appears in the file
+to a list of all the words that immediately follow that word in the file.
+The list of words can be be in any order and should include
+duplicates. So for example the key "and" might have the list
+["then", "best", "then", "after", ...] listing
+all the words which came after "and" in the text.
+
+We'll say that the empty string is what comes before
+the first word in the file.
+
+With the mimic dict, it's fairly easy to emit random
+text that mimics the original. Print a word, then look
+up what words might come next and pick one at random as
+the next work.
+
+Use the empty string as the first word to prime things.
+
+If we ever get stuck with a word that is not in the dict,
+go back to the empty string to keep things moving.
+
+Note: the standard python module 'random' includes a
+random.choice(list) method which picks a random element
+from a non-empty list.
+
+For fun, feed your program to itself as input.
+Could work on getting it to put in linebreaks around 70
+columns, so the output looks better.
+
+"""
+
+import random
+import sys
+
+
+def mimic_dict(filename):
+  """Returns mimic dict mapping each word to list of words which follow it."""
+  # +++your code here+++
+  dic = {}
+  i = 1
+  n = 0
+  k = 0
+  mimic_list = []
+
+  f = open(sys.argv[1], 'rU')
+  text = f.read().split()
+  f.close()
+
+  dic[''] = [text[0]]
+  #print text, '\n'
+  for x in text:
+       if len(dic) <= 100 and x not in dic: 
+         dic[x] = text[i:]
+         i+=1
+  print dic
+ 
+  while len(mimic_list) < 200:
+    if k < len(dic)-2:
+      mimic_list.append(dic.keys()[k])
+      mimic_list.append(random.choice(dic.values()[k]))
+      k+=1
+    else: 
+      mimic_list.append(random.choice(dic.values()[1]))
+      k = 1
+  for x in mimic_list: print x,
+
+
+#  exit(0)
+#
+#
+#
+#
+#  while n < 100:
+#    if k < len(dic)-2:
+#      mimic_list.append(dic.keys()[k]) 
+#      mimic_list.append(random.choice(dic.values()[k]))
+#  #    print mimic_list,
+#      k+=1
+#    else:
+#      k = 0
+#      n -= 1
+#    n += 1
+#  for x in mimic_list: print x,
+#    #print 'k=',k, 'n=',n, 'len(dic)=',len(dic)
+#
+#
+#  exit(0)
+#
+#
+#  print text
+#  print  
+#  while len(dic) < 100:
+#    if  i <= len(text): 
+#      dic[text[i]] = text[i+1:]
+#      i+=1
+#    else: i = 0
+#    print i, len(dic), '<', len(text)
+#  for k, v in dic.items(): print k,v
+#  exit(0)
+#
+#
+#  for x in text:
+#    if len(dic) < 100:
+#       dic[x] = text[i:]
+#       i+=1 
+#  for k, v in dic.items(): print k,v
+#
+#  while n < 100:
+##    print dic.keys()[i], random.choice(dic.values()[i])
+#    #print k
+#    if k < len(dic)-2: print dic.keys()[k], random.choice(dic.values()[k]),
+#    else: k=1
+#    n += 1
+#    k += 1
+#
+#
+##  for k, v in dic.items(): 
+##    if v: print k, random.choice(v),
+##    else: 
+#
+#  exit(0)
+#
+#  if len(text) < 100: 
+#
+#    for x in text: 
+#      dic[x] = text[i:]
+#      i+=1
+#
+#  else:
+#
+#    for x in text:
+#       if len(dic) < 100:
+#         dic[x] = text[i:]
+#         i+=1    
+#
+#  exit(0)
+#  
+#  print exit0
+#
+#  if len(text) > 100: 
+#
+#    for x in text: 
+#       if len(dic) < 100:
+#         dic[x] = text[i:]
+#         i+=1
+#  else:
+#
+#    for x in text:
+#       if len(dic) < 100:
+#         dic[x] = text[i:]
+#         i+=1 
+#
+#
+#  
+#
+##  for k,v in dic.items(): print k, '>', v
+#  #if len(dic) > 100:
+#  #for 
+#  #else: 
+#
+##  for k, v in dic.items(): 
+##    if v: print k, random.choice(v),
+#  
+#  for k, v in dic.items()[10]: print k, random.choice(v),
+##    if v: print k, random.choice(v), 
+##    if n == 100: break
+##    else: print random.choice(k), random.choice(v),
+##    n += 1
+##    words = dict.items()
+##    if len(dic) < 100:
+##      while k < 100: 
+##        print words[k][0], words[k][1] 
+##        k+=1
+#        
+##    else:
+##      for k, v in words: print k, v
+# 
+#  return
+#
+
+def print_mimic(mimic_dict, word):
+  """Given mimic dict and start word, prints 200 random words."""
+  # +++your code here+++
+  return
+
+
+# Provided main(), calls mimic_dict() and mimic()
+def main():
+  if len(sys.argv) != 2:
+    print 'usage: ./mimic.py file-to-read'
+    sys.exit(1)
+
+  dict = mimic_dict(sys.argv[1])
+  print_mimic(dict, '')
+
+
+if __name__ == '__main__':
+  main()
