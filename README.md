@@ -1,4 +1,4 @@
-# Google-Python-Class
+## O'Reilly - Programing with JavaScript
 
-Google's Python Class - this is a free class for people who want to learn Python.
-https://developers.google.com/edu/python/
+This repository contains practice to ["O'Reilly - Programming with JavaScript"](http://shop.oreilly.com/product/0636920036272.do "O'Reilly - Programming with JavaScript")  e-learning course.
+![alt text](/cover.png?raw=true "O'Reilly - Programming with JavaScript")
